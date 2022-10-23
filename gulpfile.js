@@ -1,192 +1,230 @@
-"use strict";
+import gulp from 'gulp';
+import plumber from 'gulp-plumber';
+import newer from 'gulp-newer';
 
-// Подключаем Gulp
-var gulp = require("gulp");
-// Плагин для ошибок
-var plumber = require("gulp-plumber");
-//Плагин для создания карты для склеенных файлов
-var sourcemap = require("gulp-sourcemaps");
-//Плагин для предпроцессора Less
-var less = require("gulp-less");
-//Плагин для обработки файла css "после"
-var postcss = require("gulp-postcss");
-//Плагин для расстановки префиксов в файл css
-var autoprefixer = require("autoprefixer");
-//Плагин для минификации
-var csso = require("gulp-csso");
-//Плагин для переименования файлов
-var rename = require("gulp-rename");
-//Плагин для оптимизации картинок
-var imagemin = require("gulp-imagemin");
-//Плагин для создания картинок в формате webp
-var webp = require("gulp-webp");
-//Плагин для создания спрайтов svg
-var svgstore = require("gulp-svgstore");
-//Плагин для минификации js
-var uglify = require("gulp-uglify");
-//Плагин для склеивания нескольких файлов в один
-var concat = require("gulp-concat");
-//Плагин для удаления папки
-var del = require("del");
-//Плагин для браузера, для автоматической перезагрузки страницы
-var server = require("browser-sync").create();
+import sass from 'gulp-dart-sass';
+import postcss from 'gulp-postcss';
+import autoprefixer from 'autoprefixer';
 
-//Преобразуем код из less в css
-gulp.task("css", function() {
-  return (
-    gulp
-      //Расположение файла less
-      .src("source/less/style.less")
-      .pipe(plumber())
-      //Формируем карту файла
-      .pipe(sourcemap.init())
-      //Запускаем преобразование из less в css
-      .pipe(less())
-      //Раставляем префиксы
-      .pipe(postcss([autoprefixer()]))
-      //Полученный файл переносим в папку build
-      .pipe(gulp.dest("build/css"))
-      //Минифицируем css
-      .pipe(csso())
-      //Полученный файл переименовываем
-      .pipe(rename("style.min.css"))
-      //Формируем карту файла
-      .pipe(sourcemap.write("."))
-      //Полученный файл переносим в папку build/css
-      .pipe(gulp.dest("build/css"))
-      //Перезапускам браузер
-      .pipe(server.stream())
-  );
-});
+// import gcmq from 'gulp-group-css-media-queries';
+// .pipe(gcmq())// выключите, если в проект импортятся шрифты через ссылку на внешний источник
 
-//Копируем все файлы html в папку build
-gulp.task("html", function() {
-  return (
-    gulp
-      //Откуда берем файлы
-      .src("source/*.html")
-      //Копируем в папку build
-      .pipe(gulp.dest("build"))
-      //Перезапускаем браузер
-      .pipe(server.stream())
-  );
-});
+import postUrl from 'postcss-url';
+import csso from 'postcss-csso';
 
-//Переносим файлы библиотек в папку build
-gulp.task("js:lib", function() {
-  return (
-    gulp
-      //Расположение файлов библиотек
-      .src("source/js/lib/*.js")
-      .pipe(plumber())
-      //Копируем в папку build/js/lib
-      .pipe(gulp.dest("build/js/lib"))
-      //Перезапускаем браузер
-      .pipe(server.stream())
-  );
-});
+import rename from 'gulp-rename';
+// import terser from 'gulp-terser';
+// import concat from 'gulp-concat';
 
-//Минифицируем js файл и переносим в папку build
-gulp.task("js", function() {
-  return (
-    gulp
-      //Расположение файла script.js, если файлов несколько,то склееиваем их
-      //.src("source/js/*.js")
-      .src("source/js/script.js")
-      //Склеиваем все найденные файлы
-      //.pipe(concat("all.js"))
-      //Минифицируем этот файл
-      .pipe(uglify())
-      //Переименовываем
-      .pipe(rename("script.min.js"))
-      //Копируем в папку
-      .pipe(gulp.dest("build/js"))
-      //Перезапускаем браузер
-      .pipe(server.stream())
-  );
-});
+// import htmlmin from 'gulp-htmlmin';
+import posthtml from 'gulp-posthtml';
+import include from 'posthtml-include';
 
-//Оптимизируем картинки, обязательно перепроверить svg картинки
-gulp.task("images", function() {
-  return gulp
-    .src("source/img/**/*.{png,jpg,svg}")
-    .pipe(
-      imagemin([
-        imagemin.optipng({ optimizationLevel: 3 }),
-        imagemin.jpegtran({ progressive: true }),
-        imagemin.svgo()
-      ])
-    )
-    .pipe(gulp.dest("source/img"));
-});
+import squoosh from 'gulp-libsquoosh';
+// import webp from 'gulp-webp';
+import svgo from 'gulp-svgmin';
+import svgstore from 'gulp-svgstore';
 
-//Создаем картинки в формате webp
-gulp.task("webp", function() {
-  return gulp
-    .src("source/img/**/*.{png,jpg}")
-    .pipe(webp({ quality: 90 }))
-    .pipe(gulp.dest("source/img"));
-});
+import del from 'del';
 
-//Создаем спрайт svg
-gulp.task("sprite", function() {
-  return gulp
-    .src("source/img/use-*.svg")
-    .pipe(
-      svgstore({
-        inlineSvg: true
-      })
-    )
-    .pipe(rename("sprite.svg"))
-    .pipe(gulp.dest("source/img", "build/img"));
-});
+import webpackStream from 'webpack-stream';
+import webpackConfig from './webpack.config.js';
 
-//Удаляем папку build
-gulp.task("clean", function() {
-  return del("build");
-});
+import browser from 'browser-sync';
 
-//Копируем файлы в папку build
-gulp.task("copy", function() {
-  return (
-    gulp
-      //перечисляем какие именно файлы и папки нужно скопировать
-      .src(
-        ["source/fonts/**/*.{woff,woff2}", "source/img/**", "source/*.ico"],
-        {
-          base: "source"
-        }
-      )
-      .pipe(gulp.dest("build"))
-  );
-});
 
-//Запускаем наш сборщик
-gulp.task(
-  "build",
-  gulp.series("clean", "copy", "css", "sprite", "html", "js:lib", "js")
-);
+// Styles
+export const styles = () => {
+  return gulp.src('source/sass/style.scss', {
+    sourcemaps: true
+  })
+    .pipe(plumber())
+    .pipe(sass().on('error', sass.logError))
+    .pipe(postcss([
+      postUrl({ assetsPath: './' }),
+      autoprefixer({
+        grid: true,
+      }),
+      csso()
+    ]))
+    .pipe(rename('style.min.css'))
+    .pipe(gulp.dest('build/css', { sourcemaps: '.' }))
+    .pipe(browser.stream());
+}
 
-//Настройки для браузера
-gulp.task("server", function() {
-  server.init({
-    server: "build/",
+// HTML
+
+const html = () => {
+  return gulp.src('source/*.html')
+    .pipe(posthtml([include()]))
+    .pipe(gulp.dest('build'));
+}
+
+// Scripts
+
+// const scripts = () => {
+//   return gulp.src(['source/js/modules/*.js', '!source/**/_*.*'], {
+//     sourcemaps: true,
+//   })
+//     // .pipe(terser())
+//     .pipe(concat('script.js'))
+//     .pipe(gulp.dest('build/js', {
+//       sourcemaps: '.',
+//     }))
+//     .pipe(browser.stream());
+// }
+
+const scripts = () => {
+  return gulp.src(['source/js/main.js'])
+    .pipe(webpackStream(webpackConfig))
+    .pipe(gulp.dest('build/js'))
+};
+
+// Images
+
+export const optimizeImages = () => {
+  return gulp.src('source/img/**/*.{png,jpg}')
+    .pipe(newer('build/img'))
+    .pipe(squoosh({
+      oxipng: { level: 3 },
+      mozjpeg: { quality: 75, progressive: true }
+    }))
+    .pipe(gulp.dest('build/img'))
+}
+
+const copyImages = () => {
+  return gulp.src('source/img/**/*.{png,jpg,webp}')
+    .pipe(newer('build/img'))
+    .pipe(gulp.dest('build/img'))
+}
+
+// WebP
+
+// export const createWebp = () => {
+//   return gulp.src('source/img/**/*.{png,jpg}')
+//     .pipe(squoosh({
+//       encodeOptions: {
+//         webp: {},
+//       },
+//     }))
+//     .pipe(gulp.dest('build/img'))
+// }
+
+// Используйте отличное от дефолтного значение root, если нужно обработать отдельную папку в img,
+// а не все изображения в img во всех папках.
+// root = '' - по дефолту webp добавляются и обновляются во всех папках в source/img/
+// root = 'content/' - webp добавляются и обновляются только в source/img/content/
+export const createWebp = () => {
+  const root = '';
+  return gulp.src(`source/img/${root}**/*.{png,jpg}`)
+    .pipe(squoosh({
+      encodeOptions: {
+        webp: { quality: 90 },
+      },
+    }))
+    .pipe(gulp.dest(`build/img/${root}`));
+}
+
+// SVG
+
+export const svg = () => {
+  return gulp.src('source/img/svg/*.svg')
+    .pipe(svgo())
+    .pipe(gulp.dest('build/img/svg'));
+}
+
+export const sprite = () => {
+  return gulp.src('source/img/sprite/*.svg')
+    .pipe(svgo())
+    .pipe(svgstore({
+      inlineSvg: true
+    }))
+    .pipe(rename('sprite.svg'))
+    .pipe(gulp.dest('build/img'));
+}
+
+// Copy
+
+export const copy = (done) => {
+  gulp.src([
+    'source/fonts/**/*.{woff2,woff}',
+    'source/*.ico',
+  ], {
+    base: 'source'
+  })
+    .pipe(gulp.dest('build'))
+  done();
+}
+
+
+// Clean
+
+const clean = () => {
+  return del('build');
+};
+
+// Server
+
+const server = (done) => {
+  browser.init({
+    server: {
+      baseDir: 'build'
+    },
     notify: false,
     open: true,
     cors: true,
-    ui: false
+    ui: false,
   });
+  done();
+}
 
-  //Следим за изменениями и запускаем задачи или обновляем браузер
-  gulp.watch("source/less/**/*.less", gulp.series("css"));
-  gulp.watch("source/img/use-*.svg", gulp.series("sprite", "refresh"));
-  gulp.watch("source/js/lib/*.js", gulp.series("js:lib", "refresh"));
-  gulp.watch("source/js/*.js", gulp.series("js", "refresh"));
-  gulp.watch("source/*.html", gulp.series("html", "refresh"));
-});
+// Reload
 
-gulp.task("refresh", function() {
-  server.reload();
-});
+const reload = (done) => {
+  browser.reload();
+  done();
+}
 
-gulp.task("start", gulp.series("build", "server"));
+// Watcher
+
+const watcher = () => {
+  gulp.watch('source/sass/**/*.scss', gulp.series(styles));
+  gulp.watch('source/js/**/*.js', gulp.series(scripts, reload));
+  gulp.watch('source/**/*.html', gulp.series(html, reload));
+  // gulp.watch('source/img/**/*.{jpg,png}', gulp.series(optimizeImages, createWebp, reload));
+  gulp.watch('source/img/**/*.{jpg,png}', gulp.series(createWebp, copyImages, reload));
+  gulp.watch('source/img/svg/*.svg', gulp.series(svg, reload));
+  gulp.watch('source/img/sprite/*.svg', gulp.series(sprite, reload));
+}
+
+// Build
+
+export const build = gulp.series(
+  clean,
+  copy,
+  createWebp,
+  optimizeImages,
+  gulp.parallel(
+    styles,
+    html,
+    scripts,
+    svg,
+    sprite
+  ),
+);
+
+// Start
+export const start = gulp.series(
+  clean,
+  copy,
+  createWebp,
+  copyImages,
+  gulp.parallel(
+    styles,
+    html,
+    scripts,
+    svg,
+    sprite
+  ),
+  server,
+  watcher);

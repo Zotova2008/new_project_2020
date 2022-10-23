@@ -1,0 +1,34 @@
+.fit-grid > * {
+  min-width: 0;
+}
+
+/* Применяем max-width к замещаемым элементам и контролам формы */
+.fit-grid img,
+.fit-grid video,
+.fit-grid audio,
+.fit-grid canvas,
+.fit-grid input,
+.fit-grid select,
+.fit-grid button,
+.fit-grid progress {
+  max-width: 100%;
+}
+
+/* Заставляем поля с типом file и submit переносить текст */
+.fit-grid input[type="file"],
+.fit-grid input[type="submit"] {
+  white-space: pre-wrap;
+}
+
+/* Чиним прогрессбар и поле-ползунок */
+.fit-grid progress,
+.fit-grid input[type="range"] {
+  width: 100%;
+}
+
+/* Фиксим поля с типом Number в Firefox */
+@supports (--moz-appearance: none) {
+  .fit-grid input[type="number"] {
+    width: 100%;
+  }
+}

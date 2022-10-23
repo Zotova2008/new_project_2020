@@ -1,0 +1,119 @@
+// @font-face {
+//   font-style: normal;
+//   font-weight: 700;
+//   font-family: "Roboto";
+
+//   font-display: swap;
+//   src:
+//     url("../fonts/Roboto-Bold.woff2") format("woff2"),
+//     url("../fonts/Roboto-Bold.woff") format("woff");
+// }
+
+// @mixin font($font_name, $file_name, $weight, $style) {
+//   font-style: #{$style};
+//   font-weight: #{$weight};
+//   font-family: $font_name;
+
+//   font-display: swap;
+//   src: url("../fonts/#{$file_name}.woff2") format("woff2"),
+//   url("../fonts/#{$file_name}.woff") format("woff");
+// }
+
+// @mixin fontFolder($font_name, $file__direct, $file_name, $weight, $style) {
+//   font-style: #{$style};
+//   font-weight: #{$weight};
+//   font-family: $font_name;
+
+//   font-display: swap;
+//   src: url("../fonts/#{$file__direct}/#{$file_name}.woff2") format("woff2"),
+//     url("../fonts/#{$file__direct}/#{$file_name}.woff") format("woff");
+// }
+
+// Rouble
+@font-face {
+  @include fontFolder("Rouble", rouble, rouble, 400, normal);
+}
+
+// Roboto
+@font-face {
+  @include fontFolder("Roboto", roboto, Roboto-Bold, 700, normal);
+}
+
+@font-face {
+  @include fontFolder("Roboto", roboto, Roboto-Regular, 400, normal);
+}
+
+// GothamPro
+
+@font-face {
+  @include fontFolder("Gotham Pro", gotham-pro, GothamPro-Light, 300, normal);
+}
+
+@font-face {
+  @include fontFolder("Gotham Pro", gotham-pro, GothamPro-LightItalic, 300, italic);
+}
+
+@font-face {
+  @include fontFolder("Gotham Pro", gotham-pro, GothamPro, 400, normal);
+}
+
+@font-face {
+  @include fontFolder("Gotham Pro", gotham-pro, GothamPro-Italic, 400, italic);
+}
+
+@font-face {
+  @include fontFolder("Gotham Pro", gotham-pro, GothamPro-Medium, 500, normal);
+}
+
+@font-face {
+  @include fontFolder("Gotham Pro", gotham-pro, GothamPro-MediumItalic, 500, italic);
+}
+
+@font-face {
+  @include fontFolder("Gotham Pro", gotham-pro, GothamPro-Bold, 700, normal);
+}
+
+@font-face {
+  @include fontFolder("Gotham Pro", gotham-pro, GothamPro-BoldItalic, 700, italic);
+}
+
+@font-face {
+  @include fontFolder("Gotham Pro", gotham-pro, GothamPro-Black, 900, normal);
+}
+
+@font-face {
+  @include fontFolder("Gotham Pro", gotham-pro, GothamPro-BlackItalic, 900, italic);
+}
+
+@font-face {
+  @include fontFolder("Gotham Pro Narrow", gotham-pro, GothamProNarrow-Medium, 500, normal);
+}
+
+@font-face {
+  @include fontFolder("Gotham Pro Narrow", gotham-pro, GothamProNarrow-Bold, 700, normal);
+}
+
+// Montserrat
+@font-face {
+  @include fontFolder("Montserrat", montserrat, montserrat-regular, 400, normal);
+}
+
+@font-face {
+  @include fontFolder("Montserrat", montserrat, montserrat-italic, 400, italic);
+}
+
+@font-face {
+  @include fontFolder("Montserrat", montserrat, montserrat-semibold, 600, normal);
+}
+
+@font-face {
+  @include fontFolder("Montserrat", montserrat, montserrat-semibolditalic, 600, italic);
+}
+
+@font-face {
+  @include fontFolder("Montserrat", montserrat, montserrat-bold, 700, normal);
+}
+
+@font-face {
+  @include fontFolder("Montserrat", montserrat, montserrat-bolditalic, 700, italic);
+}
