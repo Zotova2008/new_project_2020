@@ -1,19 +1,25 @@
 .btn {
-  @include hover-focus {
-    opacity: 0.8;
-  }
+  display: inline-block;
+  width: 220px;
+  padding: 25px 20px;
 
-  display: inline-flex;
-  padding: 10px 20px;
-
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 16px;
+  font-family: $ff-gotham-pro;
+  text-align: center;
   color: $color-default-white;
 
-  background-color: $color-neon-blue;
-  background-image: url("../../img/svg/not-needed-in-sprite.svg");
+  background: $color-gradient-main;
   border: none;
+  border-radius: $border-radius-main;
   cursor: pointer;
 
   transition: opacity $trans-default;
+
+  @include hover-focus {
+    opacity: 0.8;
+  }
 
   &--red {
     background-color: $color-torch-red;

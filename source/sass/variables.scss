@@ -12,10 +12,14 @@ $color-transparent: rgba(255, 255, 255, 0);
 
 $color-neon-blue: #2c39f2;
 $color-torch-red: #ff1553;
-
+$color-main: #665aff;
+$color-gradient-main: linear-gradient(180deg, #9588ff 0%, #665aff 100%);
 // Gradient
 
 $black-to-right: linear-gradient(90deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 75%);
+
+$border-radius-main: 5px;
+$border-size: 3px;
 
 // Typography
 // ---------------------------------
@@ -31,6 +35,8 @@ $ff-roboto: "Roboto", "Candara", sans-serif;
 $ff-gotham-pro: "Gotham Pro", "Candara", sans-serif;
 $ff-gotham-pro-narrow: "Gotham Pro Narrow", "Candara", sans-serif;
 $ff-montserrat: "Montserrat", "Candara", sans-serif;
+$ff-proxima: "Proxima Nova", "Candara", sans-serif;
+
 // Animation
 // ---------------------------------
 

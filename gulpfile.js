@@ -9,6 +9,9 @@ import autoprefixer from 'autoprefixer';
 // import gcmq from 'gulp-group-css-media-queries';
 // .pipe(gcmq())// выключите, если в проект импортятся шрифты через ссылку на внешний источник
 
+// import copyAssets from 'postcss-copy-assets';
+// .pipe(postcss([copyAssets({ base: 'build' })], { to: 'build/css/style.css' }))
+
 import postUrl from 'postcss-url';
 import csso from 'postcss-csso';
 

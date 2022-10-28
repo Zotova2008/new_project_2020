@@ -2,7 +2,9 @@
 // этим вы усложняете работу команды, проверку вашего кода и будущую поддержку проекта
 
 @mixin retina {
-  @media (min-resolution: $retina-dpi), (min-resolution: $retina-dppx) {
+
+  @media (min-resolution: $retina-dpi),
+  (min-resolution: $retina-dppx) {
     @content;
   }
 }
@@ -13,7 +15,8 @@
   font-family: $font_name;
 
   font-display: swap;
-  src: url("../fonts/#{$file_name}.woff2") format("woff2"), url("../fonts/#{$file_name}.woff") format("woff");
+  src: url("../fonts/#{$file_name}.woff2") format("woff2"),
+  url("../fonts/#{$file_name}.woff") format("woff");
 }
 
 @mixin fontFolder($font_name, $file__direct, $file_name, $weight, $style) {
@@ -23,7 +26,7 @@
 
   font-display: swap;
   src: url("../fonts/#{$file__direct}/#{$file_name}.woff2") format("woff2"),
-    url("../fonts/#{$file__direct}/#{$file_name}.woff") format("woff");
+  url("../fonts/#{$file__direct}/#{$file_name}.woff") format("woff");
 }
 
 @mixin hover {
@@ -135,3 +138,6 @@
 // }
 
 // ---------------------------------
+
+// не нужно добавлять свои миксины для ресета списков, обнуления кнопок и прочие
+// этим вы усложняете работу команды, проверку вашего кода и будущую поддержку проекта

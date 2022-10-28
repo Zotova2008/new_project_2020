@@ -117,3 +117,29 @@
 @font-face {
   @include fontFolder("Montserrat", montserrat, montserrat-bolditalic, 700, italic);
 }
+
+// Proxima Nova
+
+@font-face {
+  @include fontFolder("Proxima Nova", proxima-nova, ProximaNova-Light, 300, normal);
+}
+
+@font-face {
+  @include fontFolder("Proxima Nova", proxima-nova, ProximaNova-Regular, 400, normal);
+}
+
+@font-face {
+  @include fontFolder("Proxima Nova", proxima-nova, ProximaNova-Semibold, 600, normal);
+}
+
+@font-face {
+  @include fontFolder("Proxima Nova", proxima-nova, ProximaNova-Extrabld, 800, normal);
+}
+
+@font-face {
+  @include fontFolder("Proxima Nova", proxima-nova, ProximaNova-Bold, 700, normal);
+}
+
+@font-face {
+  @include fontFolder("Proxima Nova", proxima-nova, ProximaNova-Black, 900, normal);
+}
