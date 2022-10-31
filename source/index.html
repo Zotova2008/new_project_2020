@@ -5,16 +5,8 @@
 
 <body>
   <div class="wrapper">
-    <header class="header">
-      <div class="header__container container">
-        <nav class="nav">
-          <a class="nav__logo" aria-label="Логотип" href="#">
-            <svg width="40" height="40" role="img">
-              <use href="img/sprite.svg#icon-phone"></use>
-            </svg>
-          </a>
-        </nav>
-      </div>
+    <header>
+      <div class="container"></div>
     </header>
     <main>
       <section class="intro">
@@ -22,22 +14,18 @@
           <h1>Тестовая страница.</h1>
           <p>На данной странице показан пример модальных окон.</p>
           <p>Перед началом разработки не забудьте удалить всё содержимое &#8249;main&#8250;&#8249;&#8260;main&#8250;.</p>
-          <p>
-            <a class="btn" href="#" data-open-modal="feedback">modal--feedback link</a>
-          </p>
-          <p>
-            <a class="btn" href="#" data-open-modal="success">modal--success link</a>
-          </p>
+          <p><a class="btn" href="#" data-open-modal="feedback">modal--feedback link</a></p>
+          <p><a class="btn" href="#" data-open-modal="success">modal--success link</a></p>
         </div>
       </section>
     </main>
-
     <footer>
       <div class="container"></div>
     </footer>
   </div>
+
   <!-- Модалки -->
-  <!-- Что бы автофокус встал на поле Имя, нужно ему прописать атрибут autofocus -->
+  <!-- Что бы автофокус встал на поле Имя, нужно ему прописать атрибут data-focus -->
   <div class="modal modal--preload" data-modal="feedback">
     <div class="modal__wrapper">
       <div class="modal__overlay" data-close-modal></div>
@@ -76,6 +64,7 @@
       </div>
     </div>
   </div>
+
   <script src="js/vendor.min.js"></script>
   <script src="js/main.min.js"></script>
 </body>
