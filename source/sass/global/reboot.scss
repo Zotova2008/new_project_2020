@@ -22,6 +22,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  // Что бы при прокрутка была с отступом нужно блоку добавить свойство  scroll-margin-top: 50px;
   // оптимизация выравнивания шрифта относительно центра строки
   text-rendering: optimizeLegibility;
   // если по прежнему есть проблемы с выравниванием
