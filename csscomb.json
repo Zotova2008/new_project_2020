@@ -45,6 +45,11 @@
     ],
     [
       "display",
+      "grid-template-columns",
+      "grid-template-rows",
+      "gap",
+      "grid-row-gap",
+      "grid-column-gap",
       "-webkit-box",
       "-webkit-flex",
       "-moz-box",
