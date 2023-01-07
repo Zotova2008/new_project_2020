@@ -31,7 +31,7 @@ if (form) {
     {
       rule: 'required',
       value: true,
-      errorMessage: 'Введите выше имя имя!'
+      errorMessage: 'Введите выше имя!'
     }
     ])
 
