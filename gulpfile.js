@@ -152,7 +152,18 @@ export const copy = (done) => {
   gulp.src([
     'source/fonts/**/*.{woff2,woff}',
     'source/*.ico',
+    'source/lib/**/*.*',
     'source/*.webmanifest',
+  ], {
+    base: 'source'
+  })
+    .pipe(gulp.dest('build'))
+  done();
+}
+
+export const copyLib = (done) => {
+  gulp.src([
+    'source/lib/**/*.*'
   ], {
     base: 'source'
   })
@@ -196,6 +207,7 @@ const watcher = () => {
   gulp.watch('source/js/**/*.js', gulp.series(scripts, reload));
   gulp.watch('source/**/*.html', gulp.series(html, reload));
   // gulp.watch('source/img/**/*.{jpg,png}', gulp.series(optimizeImages, createWebp, reload));
+  gulp.watch('source/lib/**/*.*', gulp.series(copyLib, reload));
   gulp.watch('source/img/**/*.{jpg,png}', gulp.series(createWebp, copyImages, reload));
   gulp.watch('source/img/svg/*.svg', gulp.series(svg, reload));
   gulp.watch('source/img/sprite/*.svg', gulp.series(sprite, reload));
