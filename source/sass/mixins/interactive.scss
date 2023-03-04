@@ -1,0 +1,39 @@
+@mixin interactive-defaults($focus: true) {
+	transition: opacity $transition-default;
+
+	&:hover {
+		opacity: 0.6;
+	}
+
+	&:active {
+		opacity: 0.3;
+	}
+
+	@if $focus {
+		@include interactive-focus {
+			opacity: 0.6;
+		}
+	}
+}
+
+@mixin interactive-focus {
+	&:focus-visible {
+		@content;
+	}
+
+	@supports not selector(:focus-visible) {
+		&:focus {
+			@content;
+		}
+	}
+}
+
+@mixin interactive-outline {
+	outline: 2px solid;
+	outline-offset: 2px;
+}
+
+@mixin interactive-transitions {
+	transition: $transition-default;
+	transition-property: color, background-color, border-color, box-shadow, opacity;
+}

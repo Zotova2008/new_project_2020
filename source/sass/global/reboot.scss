@@ -4,6 +4,18 @@
   box-sizing: border-box;
 }
 
+// :focus-visible {
+// 	outline: 2px solid var(--contrast-color);
+// 	outline-offset: 2px;
+// }
+
+// @supports not selector(:focus-visible) {
+// 	:focus {
+// 		outline: 2px solid var(--contrast-color);
+// 		outline-offset: 2px;
+// 	}
+// }
+
 html,
 body {
   min-height: 100vh;
@@ -144,7 +156,15 @@ input[type="number"] {
 // ios button \ inputs reset
 select,
 textarea,
-input:matches([type="email"], [type="number"], [type="password"], [type="search"], [type="tel"], [type="text"], [type="url"]) {
+input:matches(
+    [type="email"],
+    [type="number"],
+    [type="password"],
+    [type="search"],
+    [type="tel"],
+    [type="text"],
+    [type="url"]
+  ) {
   appearance: none;
 }
 
