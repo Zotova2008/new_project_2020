@@ -9,4 +9,4 @@ package-lock.json
 node_modules/
 npm-debug.*
 Thumbs.db
-build/
+# build/
