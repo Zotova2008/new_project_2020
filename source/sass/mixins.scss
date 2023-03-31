@@ -7,6 +7,7 @@
   }
 }
 
+// @include retina-bg("../img/header-bg", "png");
 @mixin retina-bg($img_path, $file_ext: "jpg") {
   background-image: url("#{$img_path}.#{$file_ext}");
 
@@ -14,11 +15,19 @@
     background-image: url("#{$img_path}.webp");
   }
 
+  @supports (background-image: url("#{$img_path}.avif")) {
+    background-image: url("#{$img_path}.avif");
+  }
+
   @media (min-resolution: $retina-dpi), (min-resolution: $retina-dppx) {
     background-image: url("#{$img_path}@2x.#{$file_ext}");
 
     @supports (background-image: url("#{$img_path}@2x.webp")) {
       background-image: url("#{$img_path}@2x.webp");
+    }
+
+    @supports (background-image: url("#{$img_path}@2x.avif")) {
+      background-image: url("#{$img_path}@2x.avif");
     }
   }
 }

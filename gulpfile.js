@@ -128,6 +128,29 @@ export const createWebp = () => {
     .pipe(gulp.dest(`build/img/${root}`));
 }
 
+export const createAvif = () => {
+  return gulp.src('source/img/**/*.{png,jpg,gif}')
+    // .pipe(newer('build/img'))
+    .pipe(squoosh({
+      encodeOptions: {
+        avif: {}
+      }
+    }))
+    .pipe(gulp.dest('build/img'))
+}
+
+export const createWebpAvif = () => {
+  return gulp.src('source/img/**/*.{png,jpg,gif}')
+    // .pipe(newer('build/img'))
+    .pipe(squoosh({
+      encodeOptions: {
+        avif: {},
+        webp: {},
+      }
+    }))
+    .pipe(gulp.dest('build/img'))
+}
+
 // SVG
 
 export const svg = () => {
