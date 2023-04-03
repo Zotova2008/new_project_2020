@@ -1,0 +1,54 @@
+<!-- Modal -->
+<div class="modal modal--preload" data-modal="feedback">
+  <div class="modal__wrapper">
+    <div class="modal__overlay" data-close-modal></div>
+    <div class="modal__content">
+      <p class="modal__title">Оставьте заявку</p>
+
+      <div class="modal__form form" data-form-validate data-callback="base">
+        <form method="POST" action="lib/php/sendmail.php">
+          <div class="form__group form__group--name" data-on-input-validate data-validate-type="text" data-limitation="letters" data-required>
+            <label class="visually-hidden" for="modal-name">Введите ваше имя</label>
+            <input type="text" name="name" id="modal-name" placeholder="Имя" minlength="3" required>
+          </div>
+          <div class="form__group form__group--phone" data-on-input-validate data-validate-type="phone" data-required>
+            <label class="visually-hidden" for="modal-phone">Введите ваш номер телефона</label>
+            <input type="tel" name="phone" id="modal-phone" placeholder="Телефон" required>
+          </div>
+          <div class="form__group form__group--email" data-on-input-validate data-validate-type="email" data-required>
+            <label class="visually-hidden" for="modal-email">Введите вашу почту</label>
+            <input type="email" name="email" id="modal-email" placeholder="Email" required>
+          </div>
+          <div class="form__group form__group--textarea">
+            <label class="visually-hidden" for="modal-company">Название организации</label>
+            <input type="text" name="company" id="modal-company" placeholder="Название организации">
+          </div>
+          <div class="form__group form__group--checkbox" data-on-input-validate data-validate-type="checkbox" data-required>
+            <input type="checkbox" name="check" id="modal-checkbox" required>
+            <label for="modal-checkbox">Я согласен на обработку персональных данных</label>
+          </div>
+          <button class="form__submit button" type="submit">Отправить</button>
+        </form>
+        <div class="form__message" data-message-success>
+          <p class="form__message-text">Вашы данные успешно отправлены</p>
+        </div>
+
+        <div class="form__message" data-message-error>
+          <p class="form__message-text">Произошла неожиданная ошибка!</p>
+          <p class="form__message-text">Пожалуйста, перезагрузите страницу <br>и попробуйте отправить данные еще раз</p>
+        </div>
+
+        <div class="form__preloader">
+          <svg viewbox="0 0 100 100" width="100" height="100" role="img" xmlns="http://www.w3.org/2000/svg" aria-label="Sending.">
+            <use xlink:href="img/sprite.svg#icon-preload"></use>
+          </svg>
+        </div>
+      </div>
+      <button class="modal__close-btn btn-reset" type="button" aria-label="Закрыть попап" data-close-modal>
+        <svg width="15" height="15">
+          <use xlink:href="img/sprite.svg#icon-close"></use>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
