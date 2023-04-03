@@ -4,37 +4,31 @@
     "node_modules/**"
   ],
   "always-semicolon": true,
+  "block-indent": "  ",
   "color-case": "lower",
   "color-shorthand": false,
   "element-case": "lower",
+  "eof-newline": true,
   "leading-zero": true,
   "quotes": "double",
   "remove-empty-rulesets": true,
   "sort-order-fallback": "abc",
+  "space-before-colon": "",
+  "space-after-colon": " ",
+  "space-before-combinator": " ",
+  "space-after-combinator": " ",
+  "space-between-declarations": "\n",
+  "space-before-opening-brace": " ",
+  "space-after-opening-brace": "\n",
+  "space-before-selector-delimiter": "",
+  "space-after-selector-delimiter": "\n",
+  "space-before-closing-brace": "\n",
   "strip-spaces": true,
+  "tab-size": 2,
   "unitless-zero": true,
   "vendor-prefix-align": true,
   "lines-between-rulesets": 1,
   "sort-order": [
-    [
-      "custom-properties",
-      "dollar-variables",
-      "declarations",
-      "rules",
-      "at-rules"
-    ],
-    [
-      "$variable"
-    ],
-    [
-      "$include"
-    ],
-    [
-      "$extend"
-    ],
-    [
-      "$import"
-    ],
     [
       "content",
       "position",
@@ -449,17 +443,7 @@
       "clip",
       "-webkit-clip-path",
       "clip-path",
-      "zoom",
-      "..."
-    ],
-    [
-      "$include"
-    ],
-    [
-      "$include mixin-name"
-    ],
-    [
-      "$include media"
+      "zoom"
     ]
   ]
 }
