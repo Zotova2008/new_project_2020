@@ -1,0 +1,141 @@
+.form {
+  position: relative;
+}
+
+.form form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.form__group input:not([type="checkbox"]),
+.form__group textarea {
+  width: 100%;
+  padding: 10px;
+
+  font-style: italic;
+  font-size: 14px;
+  line-height: 16px;
+  font-family: inherit;
+  color: #000000;
+
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(#000000, 0.3);
+
+  &:focus {
+    border-color: #000000;
+    outline: none;
+  }
+}
+
+.form__group textarea {
+  resize: none;
+}
+
+.form__group--checkbox {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  align-items: start;
+}
+
+.form__group--checkbox label {
+  font-style: italic;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.form__group--checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+
+  border: 1px solid rgba(#000000, 0.3);
+
+  appearance: none;
+}
+
+.form__group--checkbox input[type="checkbox"]:checked {
+  background-image: url("../img/svg/icon-check.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 12px;
+}
+
+.form__submit {
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.form__group.is-valid input,
+.form__group.is-valid input:focus {
+  color: #12a312;
+
+  border-color: rgba(71, 184, 71, 0.8);
+}
+
+.form__group.is-invalid input,
+.form__group.is-invalid input:focus {
+  color: rgba(234, 26, 26, 0.8);
+
+  border-color: rgba(234, 26, 26, 0.8);
+}
+
+.auth.is-send {
+  display: flex;
+  height: 100%;
+}
+
+.form.is-send form {
+  display: none;
+}
+
+.form__message {
+  display: none;
+  margin: auto;
+
+  text-align: center;
+
+  .form.is-success &[data-message-success] {
+    display: block;
+  }
+
+  .form.is-error &[data-message-error] {
+    display: block;
+  }
+}
+
+// Preloader
+// is-sending
+
+.form__preloader {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  z-index: 1000;
+
+  display: none;
+  width: 100px;
+  height: 100px;
+
+  color: #3749a2;
+
+  transform: translate(-50%, -50%);
+
+  fill: #3749a2;
+}
+
+.form.is-sending .form__preloader {
+  display: block;
+}
+
+.form__preloader svg {
+  animation: preloader-rotate 2s infinite linear;
+}
+
+@keyframes preloader-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
