@@ -27,6 +27,15 @@
     border-color: #000000;
     outline: none;
   }
+
+  // Стилизация полей после автозаполнения
+  &:-webkit-autofill,
+  &:-webkit-autofill:focus {
+    box-shadow: inset 0 0 0 1000px #e8f0fe;
+    // transition: transition: background-color 600000s 0s, color 600000s 0s;
+
+    -webkit-text-fill-color: $color-default-black;
+  }
 }
 
 .form__group textarea {

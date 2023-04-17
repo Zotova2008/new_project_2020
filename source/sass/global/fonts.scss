@@ -1,14 +1,3 @@
-// @font-face {
-//   font-style: normal;
-//   font-weight: 700;
-//   font-family: "Roboto";
-
-//   font-display: swap;
-//   src:
-//     url("../fonts/Roboto-Bold.woff2") format("woff2"),
-//     url("../fonts/Roboto-Bold.woff") format("woff");
-// }
-
 // @mixin font($font_name, $file_name, $weight, $style) {
 //   font-style: #{$style};
 //   font-weight: #{$weight};
@@ -28,6 +17,9 @@
 //   src: url("../fonts/#{$file__direct}/#{$file_name}.woff2") format("woff2"),
 //     url("../fonts/#{$file__direct}/#{$file_name}.woff") format("woff");
 // }
+
+// Так как в сборке в css настроены пути относительно файлов scss,
+// то в пути нужно прописать "../../img" или "../../fonts"
 
 // Rouble
 @font-face {

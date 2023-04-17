@@ -22,7 +22,9 @@ const compileStyles = () => {
       .pipe(sass().on('error', sass.logError))
       .pipe(
           postcss([
-            postUrl({assetsPath: './'}),
+            // Так как в сборке в css настроены пути относительно файлов scss,
+            // то в пути нужно прописать "../../img" или "../../fonts"
+            postUrl({assetsPath: './../'}),
             autoprefixer({
               grid: true,
             }),
