@@ -58,7 +58,7 @@
   font-family: $font_name;
 
   font-display: swap;
-  src: url("../fonts/#{$file_name}.woff2") format("woff2"), url("../fonts/#{$file_name}.woff") format("woff");
+  src: url("../../fonts/#{$file_name}.woff2") format("woff2"), url("../../fonts/#{$file_name}.woff") format("woff");
 }
 
 @mixin fontFolder($font_name, $file__direct, $file_name, $weight, $style) {
@@ -67,8 +67,8 @@
   font-family: $font_name;
 
   font-display: swap;
-  src: url("../fonts/#{$file__direct}/#{$file_name}.woff2") format("woff2"),
-    url("../fonts/#{$file__direct}/#{$file_name}.woff") format("woff");
+  src: url("../../fonts/#{$file__direct}/#{$file_name}.woff2") format("woff2"),
+    url("../../fonts/#{$file__direct}/#{$file_name}.woff") format("woff");
 }
 
 @mixin hover {
