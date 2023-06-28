@@ -1,14 +1,23 @@
 import gulp from 'gulp';
 import rename from 'gulp-rename';
-import svgstore from 'gulp-svgstore';
+// import svgstore from 'gulp-svgstore';
 import svgo from 'gulp-svgmin';
 import squoosh from 'gulp-libsquoosh';
+import stacksvg from 'gulp-stacksvg';
+
+// const sprite = () => {
+//   return gulp.src('source/img/sprite/*.svg')
+//       .pipe(svgstore({inlineSvg: true}))
+//       .pipe(rename('sprite.svg'))
+//       .pipe(gulp.dest('build/img'));
+// };
 
 const sprite = () => {
-  return gulp.src('source/img/sprite/*.svg')
-      .pipe(svgstore({inlineSvg: true}))
+  return gulp.src('source/img/sprite/**/*.svg')
+      .pipe(svgo())
+      .pipe(stacksvg())
       .pipe(rename('sprite.svg'))
-      .pipe(gulp.dest('build/img'));
+      .pipe(gulp.dest('build/img/icons'));
 };
 
 const optimizeSvg = () => {
