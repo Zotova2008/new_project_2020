@@ -49,6 +49,7 @@
     "gulp-postcss": "9.0.1",
     "gulp-posthtml": "^3.0.5",
     "gulp-rename": "2.0.0",
+    "gulp-stacksvg": "^2.0.2",
     "gulp-svgmin": "^4.1.0",
     "gulp-svgstore": "9.0.0",
     "postcss": "8.4.14",
