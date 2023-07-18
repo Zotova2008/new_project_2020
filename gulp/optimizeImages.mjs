@@ -17,7 +17,7 @@ const sprite = () => {
       .pipe(svgo())
       .pipe(stacksvg())
       .pipe(rename('sprite.svg'))
-      .pipe(gulp.dest('build/img/icons'));
+      .pipe(gulp.dest('build/img'));
 };
 
 const optimizeSvg = () => {
