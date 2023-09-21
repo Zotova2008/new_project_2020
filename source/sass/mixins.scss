@@ -32,6 +32,29 @@
   }
 }
 
+/* stylelint-disable declaration-block-no-duplicate-properties */
+@mixin adaptive-bg($image, $ext: "jpg") {
+  background: {
+    image: image-set(url("#{$image}@3x.webp") 3x, url("#{$image}@2x.webp") 2x, url("#{$image}.webp") 1x);
+    image: image-set(
+      url("#{$image}@3x.avif") type("image/avif") 3x,
+      url("#{$image}@2x.avif") type("image/avif") 2x,
+      url("#{$image}.avif") type("image/avif") 1x,
+      url("#{$image}@3x.webp") type("image/webp") 3x,
+      url("#{$image}@2x.webp") type("image/webp") 2x,
+      url("#{$image}.webp") type("image/webp") 1x,
+      url("#{$image}@3x.#{$ext}") 3x,
+      url("#{$image}@2x.#{$ext}") 2x,
+      url("#{$image}.#{$ext}") 1x
+    );
+  }
+
+  .no-webp & {
+    background-image: url("#{$image}.#{$ext}");
+  }
+}
+/* stylelint-enable declaration-block-no-duplicate-properties */
+
 // @mixin retina-bg($bg, $ext: "jpg") {
 //   @supports not (background-image: url("../img/#{$bg}.webp")) {
 //     background-image: url("../img/#{$bg}.#{$ext}");
